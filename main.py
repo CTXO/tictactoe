@@ -9,17 +9,25 @@ grid = [[0,0,0],[0,0,0],[0,0,0]]
 
 playScreen = Tk()
 playScreen.geometry("450x450")
+playScreen.title("Tic Tac Toe")
 def createX(xLoc,yLoc):
-    canvas.create_rectangle(xLoc * 140, yLoc * 140, xLoc * 140 + 140, yLoc * 140 + 140, fill="blue", outline="black",
-                            tag=f"123")
-    canvas.create_line(xLoc*140,yLoc*140,xLoc*140+140,yLoc*140+140,fill="green", width= 3)
-    canvas.create_line(xLoc * 140, yLoc * 140+140, xLoc * 140 + 140, yLoc * 140 , fill="green", width=3)
+    scale_factor = 30
+    canvas.create_rectangle(xLoc * 140, yLoc * 140, xLoc * 140 + 140, yLoc * 140 + 140,
+                            fill="#957DAD", outline="black", width=3, tag=f"123")
+    canvas.create_line((xLoc*140)+scale_factor,(yLoc*140)+scale_factor,
+                       (xLoc*140+140)-scale_factor,(yLoc*140+140)-scale_factor,fill="red", width= 5)
+    canvas.create_line((xLoc * 140)+scale_factor, (yLoc * 140+140)-scale_factor,
+                       (xLoc * 140 + 140) - scale_factor, (yLoc * 140) + scale_factor ,
+                       fill="red", width=5)
 
 
 def createO(xLoc,yLoc):
-    canvas.create_rectangle(xLoc * 140, yLoc * 140, xLoc * 140 + 140, yLoc * 140 + 140, fill="blue", outline="black",
-                            tag=f"123")
-    canvas.create_oval(xLoc*140,yLoc*140,xLoc*140+140,yLoc*140+140,fill="green" )
+    scale_factor = 30
+    canvas.create_rectangle(xLoc * 140, yLoc * 140, xLoc * 140 + 140, yLoc * 140 + 140,
+                            fill="#957DAD", outline="black", width=3,tag=f"123")
+    canvas.create_oval(xLoc*140 + scale_factor,yLoc*140 + scale_factor,
+                       xLoc*140+140 - scale_factor,yLoc*140+ 140 - scale_factor,
+                       fill="#957DAD", outline="#FFDFD3", width=5 )
 
 
 
@@ -105,7 +113,8 @@ def buttonClick(event):
 
 for row in range(3):
     for column in range(3):
-        canvas.create_rectangle(row*140,column*140,row*140 + 140,column*140 + 140,fill="blue",outline="black",tag=f"{row},{column}")
+        canvas.create_rectangle(row*140,column*140,row*140 + 140,column*140 + 140,
+                                fill="#957DAD",outline="black",tag=f"{row},{column}", width=3)
         canvas.tag_bind(f"{row},{column}",'<ButtonPress-1>', buttonClick)
 
 
